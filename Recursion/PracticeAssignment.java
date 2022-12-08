@@ -1,6 +1,6 @@
 package Recursion;
 
-public class PracticeAssignment {
+public class PracticeAssignment{
     
     // finding all the occurences of a given element and print them
     public static void occurences(int array[], int k, int i, boolean count){
