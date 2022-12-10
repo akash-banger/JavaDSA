@@ -10,9 +10,6 @@ public class Basics {
         // can only store non-primitive data types means Integer, Char ..
 
         ArrayList<Integer> list = new ArrayList<>();
-        ArrayList<String> list2 = new ArrayList<>();
-
-
         // adding an element in ArrayList
         list.add(2); // O(1)
         list.add(3);

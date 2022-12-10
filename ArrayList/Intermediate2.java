@@ -1,8 +1,7 @@
 package ArrayList;
-import java.nio.channels.Pipe;
+
 import java.util.*;
 
-import javax.swing.text.DefaultStyledDocument.ElementSpec;
 public class Intermediate2 {
     // pair sum
     // sorted ArrayList is given 

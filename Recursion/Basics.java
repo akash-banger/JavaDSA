@@ -1,9 +1,5 @@
 package Recursion;
 
-import java.util.PrimitiveIterator;
-
-import javax.swing.plaf.metal.MetalFileChooserUI.FilterComboBoxRenderer;
-
 public class Basics {
     // in math we used to do like this f(f(x)) or f(f(f(f(f(x))));
     // now lets implement this into code

@@ -1,6 +1,4 @@
 package DivideAndConquer;
-import java.util.Arrays;
-import java.util.concurrent.CountDownLatch;
 public class PracticeAssignment {
 
     // merge sort for an array of strings

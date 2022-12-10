@@ -1,8 +1,6 @@
 package LinkedList;
 import java.util.LinkedList;
 
-import javax.print.event.PrintJobListener;
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 public class LinkedlistJCF {
 
@@ -181,7 +179,7 @@ public class LinkedlistJCF {
         // ll2.addLast(1);
 
         ll2.printList();
-        ll2.head = ll2.mergeSort(head);
+        LinkedlistJCF.head = ll2.mergeSort(head);
         ll2.printList();
         ll2.zigZag(head);
         ll2.printList();

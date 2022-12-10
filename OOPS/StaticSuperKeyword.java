@@ -17,9 +17,9 @@ public class StaticSuperKeyword {
         s2.name = "banger";
 
 
-        s1.school = "bcs"; // if any object change a static varible then that will change for all the objects
+        Student.school = "bcs"; // if any object change a static varible then that will change for all the objects
 
-        System.out.println(s2.school);
+        System.out.println(Student.school);
 
 
         // super keyword

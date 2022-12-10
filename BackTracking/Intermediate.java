@@ -1,5 +1,4 @@
 package BackTracking;
-import java.util.*;
 public class Intermediate {
 
     // printing the subsets of a String 

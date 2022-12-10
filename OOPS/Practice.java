@@ -2,7 +2,7 @@ package OOPS;
 public class Practice{
     public static void main(String arg[]){
         // we can write
-        Vehicle c = new Car();
+        // Vehicle c = new Car();
 
         // Car v = new Vehicle(); // cannot write this
 
