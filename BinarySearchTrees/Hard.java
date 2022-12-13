@@ -180,7 +180,7 @@ public class Hard {
         add(root.right, 45, 70);
         add(root.right.right, 65, 80);
 
-        Info info = largestBST(root);
+        largestBST(root);
         System.out.println(largestSize);
 
 
