@@ -1,8 +1,7 @@
 package JavaBasics;
 import java.util.*;
 public class Functions {
-
-
+    
     // function to check a number is palindrome or not;
     public static boolean isPalindrome(int n){
         int m = n;
