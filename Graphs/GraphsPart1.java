@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.concurrent.SynchronousQueue;
 
 
 public class GraphsPart1 {
@@ -52,7 +53,6 @@ public class GraphsPart1 {
 
 
 
-
     public static void bfs(ArrayList<Edge>[] graph){ // O(V + E)
         boolean visited[] = new boolean[graph.length + 1];
         Queue<Integer> q = new LinkedList<>();
@@ -71,7 +71,19 @@ public class GraphsPart1 {
         }
     }
 
-    public static void dfs(ArrayList<Edge>[] graph){
+    public static void dfs(ArrayList<Edge>[] graph, int element, boolean visited[]){
+
+        if(element >= graph.length){
+            return;
+        }
+
+        if(!visited[element]){
+            System.out.print(graph[element].get(0).source + " ");
+            visited[element] = true;
+            for(int i=0; i<graph[element].size(); i++){
+                dfs(graph, graph[element].get(i).dest, visited);
+            }
+        }
 
     }
 
@@ -93,10 +105,8 @@ public class GraphsPart1 {
                              4
          */
 
-
-
         
-        int v = 5;
+        int v = 6;
         
         @SuppressWarnings("unchecked")
         ArrayList<Edge>[] graph = new ArrayList[v];
@@ -121,9 +131,13 @@ public class GraphsPart1 {
         // 3rd vertex
         graph[3].add(new Edge(3, 2, 1));
         graph[3].add(new Edge(3, 1, 3));
+        graph[3].add(new Edge(3, 5, 1));
 
         // 4th vertex 
         graph[4].add(new Edge(4, 2, 2));
+
+        // 5th vertex 
+        graph[5].add(new Edge(5, 3, 1));
 
 
         // 2's neighbours 
@@ -142,11 +156,12 @@ public class GraphsPart1 {
 
         // BFS 
         bfs(graph);
+        System.out.println();
 
+        boolean visited[] = new boolean[v];
 
         // DFS 
-        dfs(graph);
-
+        dfs(graph, 0, visited);
 
     }
 }
