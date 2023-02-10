@@ -111,10 +111,8 @@ public class Linkedlist2 {
 
         System.out.println(ll.isLooped());
         ll.removeLoop(); // only work when not fully looped( head connected with tail is not considered)
-
         System.out.println(ll.isLooped());
         ll.printList();
-
     }   
 }
 

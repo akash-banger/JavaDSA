@@ -2,9 +2,7 @@ package Graphs;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.concurrent.SynchronousQueue;
 
 
 public class GraphsPart1 {
@@ -72,25 +70,47 @@ public class GraphsPart1 {
     }
 
     public static void dfs(ArrayList<Edge>[] graph, int element, boolean visited[]){
+        // visit
+        System.out.print(element + " ");
+        visited[element] = true;
 
-        if(element >= graph.length){
-            return;
+        for(int i=0; i<graph[element].size(); i++){
+            Edge e = graph[element].get(i);
+
+            // call for the next unvisited neighbour
+            if(!visited[e.dest]){
+                dfs(graph, e.dest, visited);
+            }
+        }
+    }
+
+
+
+    // has path 
+
+    public static boolean hasPath(ArrayList<Edge> graph[], int src, int dest, boolean visited[]){
+
+        if(src == dest){
+            return true;
         }
 
-        if(!visited[element]){
-            System.out.print(graph[element].get(0).source + " ");
-            visited[element] = true;
-            for(int i=0; i<graph[element].size(); i++){
-                dfs(graph, graph[element].get(i).dest, visited);
+        visited[src] = true;
+
+        for(int i=0; i<graph[src].size(); i++){
+            Edge e = graph[src].get(i);
+
+            if(!visited[e.dest] && hasPath(graph, e.dest, dest, visited)){
+                return true;
             }
         }
 
+        return false;
     }
 
 
     public static void main(String arg[]){
 
-        // creating a graph using adjacency list 
+        // creating the graph using adjacency list
 
         /* 
                             (5)
@@ -99,13 +119,12 @@ public class GraphsPart1 {
                            (1) /     \ (3)
                               /       \
                              2 ------- 3
-                             |   (1)
-                          (2)|
-                             |
-                             4
+                             |   (1)   |
+                          (2)|         |(1)
+                             |         |
+                             4         5
          */
 
-        
         int v = 6;
         
         @SuppressWarnings("unchecked")
@@ -158,10 +177,13 @@ public class GraphsPart1 {
         bfs(graph);
         System.out.println();
 
-        boolean visited[] = new boolean[v];
 
         // DFS 
-        dfs(graph, 0, visited);
+        dfs(graph, 0, new boolean[v]);
 
+
+        // has path
+        System.out.println();
+        System.out.println(hasPath(graph, 0, 4, new boolean[v]));
     }
 }

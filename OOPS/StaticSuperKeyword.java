@@ -9,7 +9,7 @@ public class StaticSuperKeyword {
          * functions
          * blocks
          * nested classes
-        */ 
+        */
 
         Student s1 = new Student();
         Student s2 = new Student();
@@ -31,8 +31,6 @@ public class StaticSuperKeyword {
         Horse mustang = new Horse();
         System.out.println(mustang.color);
     }
-
-
 }
 
 class Student{
