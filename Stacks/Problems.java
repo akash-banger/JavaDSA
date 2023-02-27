@@ -152,11 +152,77 @@ public class Problems {
         }
 
         return result;
-
     }
 
+    // trapping rainWater 
+    public static int trappingRainWater(int height[]){
+        Stack<Integer> s = new Stack<>();
+        int vol =0;
+        int maxIdx = 0;
+        for(int i=1; i<height.length; i++){
+            maxIdx = height[i] > height[maxIdx]? i : maxIdx;
+        }
+
+        int currMax = height[0];
+        for(int i=1; i<=maxIdx; i++){
+            int curr = height[i];
+
+            if(curr >= currMax){
+                while(!s.isEmpty()){
+                    int temp = s.peek(); 
+                    vol += s.pop();
+
+                    if(s.isEmpty()){
+                        vol -= temp;
+                        break;
+                    }
+                }
+
+                currMax = curr;
+                s.push(currMax);
+            }
+
+            else {
+                s.push(currMax - curr);
+            }
+
+        }
+
+        while(!s.isEmpty()){
+            s.pop();
+        }
+
+        currMax = height[height.length-1];
+        s.push(height[height.length -1]);
 
 
+        for(int i=height.length-2; i>=maxIdx; i--){
+            int curr = height[i];
+
+            if(curr >= currMax){
+                while(!s.isEmpty()){
+                    int temp = s.peek(); 
+                    vol += s.pop();
+
+                    if(s.isEmpty()){
+                        vol -= temp;
+                        break;
+                    }
+                }
+
+                currMax = curr;
+                s.push(currMax);
+            }
+
+            else {
+                s.push(currMax - curr);
+            }
+        }
+
+        return vol;
+    }
+
+    
     public static void main(String arg[]){
         // checking a linkedList of characters is a palindrome or not
         Node head = new Node('A');
@@ -179,5 +245,9 @@ public class Problems {
         System.out.println(decode(new String("3[b2[v]]")));
 
 
+        // Trapping rainWater Problem using stacks 
+        int height[] = {7, 0, 4, 2, 5, 0, 6, 4, 0, 6};
+        System.out.println(trappingRainWater(height));
     }
+
 }
