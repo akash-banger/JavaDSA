@@ -1,7 +1,6 @@
 package Stacks;
 
 import java.util.Stack;
-import java.util.concurrent.SynchronousQueue;
 
 public class Problems {
 

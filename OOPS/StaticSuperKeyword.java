@@ -8,7 +8,7 @@ public class StaticSuperKeyword {
          * Properties
          * functions
          * blocks
-         * nested classes
+         * nested classes 
         */
 
         Student s1 = new Student();
@@ -18,7 +18,6 @@ public class StaticSuperKeyword {
 
 
         Student.school = "bcs"; // if any object change a static varible then that will change for all the objects
-
         System.out.println(Student.school);
 
 

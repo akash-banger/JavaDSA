@@ -175,7 +175,7 @@ public class GraphsPart3 {
         int V1 = 6;
 
         @SuppressWarnings("unchecked")
-        ArrayList<Edge>[] graph1 = new ArrayList[V];
+        ArrayList<Edge>[] graph1 = new ArrayList[V1];
 
         for(int i=0; i<graph1.length; i++){
             graph1[i] = new ArrayList<>();
