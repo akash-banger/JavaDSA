@@ -163,7 +163,7 @@ public class GraphsPart2 {
         boolean stack[] = new boolean[graph.length];
 
         for(int i=0; i<graph.length; i++){
-            if(!vis[i] && detectCycleDirUtil(graph, i, -1, vis, stack)){
+            if(!vis[i] && detectCycleDirUtil(graph, i, vis, stack)){
                 return true;
             }
         }
@@ -176,8 +176,7 @@ public class GraphsPart2 {
 
 
     // cycle detection in directed graph helper function
-    public static boolean detectCycleDirUtil(ArrayList<Edge>[] graph, int curr, int par, boolean vis[], boolean stack[]){
-        // modified from Mam's code (I included the parent also to avoid the problem(if some element is directing to its child and the child is also directing to its parent))
+    public static boolean detectCycleDirUtil(ArrayList<Edge>[] graph, int curr, boolean vis[], boolean stack[]){
 
         vis[curr] = true;
         stack[curr] = true;
@@ -185,12 +184,12 @@ public class GraphsPart2 {
         for(int i=0; i<graph[curr].size(); i++){
             Edge e = graph[curr].get(i);
 
-            if(stack[e.dest] && e.dest != par){
+            if(stack[e.dest]){
                 return true;
             }
 
             else if(!vis[e.dest]){
-                if(detectCycleDirUtil(graph, e.dest, curr, vis, stack)){
+                if(detectCycleDirUtil(graph, e.dest, vis, stack)){
                     return true;
                 }
             }
@@ -204,6 +203,7 @@ public class GraphsPart2 {
 
 
     // Topological Sorting 
+    // It is a linear order of vertices such that for every directed edge u-->v, u comes before v 
 
     public static void topologicalSort(ArrayList<Edge>[] graph){ // O(V + E)
         boolean vis[] = new boolean[graph.length];

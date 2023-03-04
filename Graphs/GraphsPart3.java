@@ -2,6 +2,7 @@ package Graphs;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class GraphsPart3 {
@@ -49,7 +50,7 @@ public class GraphsPart3 {
 
         while(!q.isEmpty()){
             int curr = q.remove(); 
-            System.out.print(curr+ " ");
+            System.out.print(curr + " ");
 
             for(int i=0; i<graph[curr].size(); i++){
                 Edge e = graph[curr].get(i);
@@ -82,33 +83,65 @@ public class GraphsPart3 {
     }
 
 
-    public static void shortestPath(ArrayList<Edge>[] graph, int src){
+    static class Pair implements Comparable<Pair>{
+        int n;
+        int path;
+
+        Pair(int n, int path){
+            this.n = n;
+            this.path = path;
+        }
+
+        @Override
+        public int compareTo(Pair p2){
+            return this.path - p2.path;
+        }
+    }
+
+
+    public static void dijkstra(ArrayList<Edge>[] graph, int src){
 
         int shortestDist[] = new int[graph.length];
+        boolean visited[] = new boolean[graph.length];
+        for(int i=0; i<shortestDist.length; i++){
+            if(i != src){
+                shortestDist[i] = Integer.MAX_VALUE;
+            }
+        }
+    
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        pq.add(new Pair(src, 0));
+
+        while(!pq.isEmpty()){
+            Pair curr = pq.remove();
+
+            if(!visited[curr.n]){
+                visited[curr.n] = true;
+
+                for(int i=0; i<graph[curr.n].size(); i++){
+                    Edge e = graph[curr.n].get(i);
+
+                    int u = e.src;
+                    int v = e.dest;
+                    int wt = e.wt;
+
+                    if(shortestDist[u] + wt < shortestDist[v]){
+                        shortestDist[v] = shortestDist[u] + wt;
+
+                        pq.add(new Pair(v, shortestDist[v]));
+                    }
+
+                }
+            }
+        }
+
 
         for(int i=0; i<shortestDist.length; i++){
-            shortestDist[i] = Integer.MAX_VALUE;
+            System.out.print(shortestDist[i] + " ");
         }
-
-        for(int i=0; i<graph.length; i++){
-            Edge e = graph[src].get(i);
-            shortestDist[e.dest] = e.wt;
-        }
-
-        shortestDist[src] = 0;
-
-        shortestPathUtil(graph, src, src, shortestDist);
+        System.out.println();
 
     }
-
-    public static int shortestPathUtil(ArrayList<Edge>[] graph, int u, int v, int shortestDist[]){
-        shortestDist[v] = Math.min(shortestDist[v], shortestPathUtil(graph, u, v, shortestDist));
-        return 0;
-    }
-
-
-
-
 
 
     public static void main(String arg[]){
@@ -184,8 +217,8 @@ public class GraphsPart3 {
         graph1[0].add(new Edge(0, 1, 2));
         graph1[0].add(new Edge(0, 2, 4));
 
-        graph[1].add(new Edge(1, 2, 1));
         graph[1].add(new Edge(1, 3, 7));
+        graph1[1].add(new Edge(1, 2, 1));
 
         graph1[2].add(new Edge(2, 4, 3));
 
@@ -194,6 +227,6 @@ public class GraphsPart3 {
         graph1[4].add(new Edge(4, 3, 2));
         graph1[4].add(new Edge(4, 5, 5));
 
-        shortestPath(graph1, 0);
+        dijkstra(graph1, 0);
     }
 }

@@ -9,7 +9,7 @@ public class GraphsPart1 {
 
 
     // Graphs is network of nodes
-    // Graphs consistes of edges and vortex 
+    // Graphs consists of edges and vortex 
     
 
     /* Types of edges 
@@ -52,7 +52,7 @@ public class GraphsPart1 {
 
 
     public static void bfs(ArrayList<Edge>[] graph){ // O(V + E)
-        boolean visited[] = new boolean[graph.length + 1];
+        boolean visited[] = new boolean[graph.length];
         Queue<Integer> q = new LinkedList<>();
         q.add(0); // src = 0 you can take anything as source
 
