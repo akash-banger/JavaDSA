@@ -228,5 +228,8 @@ public class GraphsPart3 {
         graph1[4].add(new Edge(4, 5, 5));
 
         dijkstra(graph1, 0);
+        // The drawBack of dijkstra algorithm is that, It does'nt give guarrantee that it will give correct answer if the edge wt contains a negative number.
+
+        // So we use Bellman ford algorithm. which is covered in GraphsPart4
     }
 }
